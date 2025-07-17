@@ -32,7 +32,7 @@ function ensureSamplePosts() {
         excerpt:
           "Learn how to build modern web applications with Next.js 15, featuring the latest App Router, Server Components, and more.",
         tags: ["Next.js", "React", "Web Development", "JavaScript"],
-        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=400&fit=crop",
+        image: "/images/getting-started-with-nextjs.png",
         content: `# Getting Started with Next.js 15
 
 Next.js 15 brings exciting new features and improvements that make building modern web applications easier than ever. In this comprehensive guide, we'll explore the key features and show you how to get started.
@@ -79,7 +79,7 @@ Next.js 15 represents a significant step forward in React development. With its 
         excerpt:
           "Discover advanced Tailwind CSS techniques to create beautiful, responsive designs with utility-first CSS framework.",
         tags: ["Tailwind CSS", "CSS", "Design", "Frontend"],
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop",
+        image: "/images/mastering-tailwind-css.png",
         content: `# Mastering Tailwind CSS
 
 Tailwind CSS has revolutionized how we approach styling in modern web development. This utility-first framework provides unprecedented flexibility and speed in creating beautiful user interfaces.
@@ -151,7 +151,7 @@ Tailwind CSS empowers developers to create stunning designs quickly and efficien
         excerpt:
           "Explore React Server Components and how they're changing the way we build React applications with better performance and user experience.",
         tags: ["React", "Server Components", "Performance", "Web Development"],
-        image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=400&fit=crop",
+        image: "/images/react-server-components-explained.png",
         content: `# React Server Components: The Future of React Development
 
 React Server Components represent a paradigm shift in how we build React applications. They enable us to render components on the server while maintaining the interactivity we love about React.
@@ -232,7 +232,7 @@ React Server Components offer a powerful new way to build performant, scalable R
         excerpt:
           "Learn essential TypeScript patterns and practices for building maintainable, scalable applications with better type safety.",
         tags: ["TypeScript", "JavaScript", "Best Practices", "Development"],
-        image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&h=400&fit=crop",
+        image: "/images/typescript-best-practices.png",
         content: `# TypeScript Best Practices for Large-Scale Applications
 
 TypeScript has become the go-to choice for building large-scale JavaScript applications. Its static type system helps catch errors early and improves code maintainability.
@@ -370,7 +370,7 @@ Following these TypeScript best practices will help you build more maintainable,
         excerpt:
           "Explore cutting-edge CSS techniques including CSS Grid, Flexbox, custom properties, and modern layout methods for responsive design.",
         tags: ["CSS", "Web Design", "Frontend", "Responsive Design"],
-        image: "https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?w=800&h=400&fit=crop",
+        image: "/images/modern-css-techniques.png",
         content: `# Modern CSS Techniques: Grid, Flexbox, and Beyond
 
 CSS has evolved tremendously in recent years. Modern CSS provides powerful tools for creating responsive, maintainable layouts without relying on frameworks.
@@ -563,6 +563,239 @@ Most modern CSS features have excellent browser support:
 ## Conclusion
 
 Modern CSS provides powerful tools for creating responsive, maintainable layouts. By mastering these techniques, you can build beautiful, performant websites without heavy dependencies.`,
+      },
+      {
+        slug: "web-performance-optimization",
+        title: "Web Performance Optimization: A Complete Guide",
+        date: "2023-12-15",
+        author: "David Kim",
+        excerpt:
+          "Learn essential techniques for optimizing web performance, from Core Web Vitals to advanced optimization strategies.",
+        tags: ["Performance", "Web Development", "Optimization", "Core Web Vitals"],
+        image: "/images/web-performance-optimization.png",
+        content: `# Web Performance Optimization: A Complete Guide
+
+Web performance is crucial for user experience, SEO, and business success. This comprehensive guide covers everything you need to know about optimizing your website's performance.
+
+## Why Performance Matters
+
+Performance impacts:
+
+- **User Experience**: Faster sites provide better UX
+- **SEO Rankings**: Google uses performance as a ranking factor
+- **Conversion Rates**: Every 100ms delay can reduce conversions by 1%
+- **Accessibility**: Better performance helps users on slower connections
+
+## Core Web Vitals
+
+Google's Core Web Vitals are essential metrics:
+
+### 1. Largest Contentful Paint (LCP)
+Measures loading performance. Should occur within 2.5 seconds.
+
+\`\`\`javascript
+// Measure LCP
+new PerformanceObserver((entryList) => {
+  for (const entry of entryList.getEntries()) {
+    console.log('LCP candidate:', entry.startTime, entry);
+  }
+}).observe({type: 'largest-contentful-paint', buffered: true});
+\`\`\`
+
+### 2. First Input Delay (FID)
+Measures interactivity. Should be less than 100 milliseconds.
+
+### 3. Cumulative Layout Shift (CLS)
+Measures visual stability. Should be less than 0.1.
+
+## Optimization Strategies
+
+### 1. Image Optimization
+
+\`\`\`html
+<!-- Use modern formats -->
+<picture>
+  <source srcset="image.webp" type="image/webp">
+  <source srcset="image.avif" type="image/avif">
+  <img src="image.jpg" alt="Description" loading="lazy">
+</picture>
+\`\`\`
+
+### 2. Code Splitting
+
+\`\`\`javascript
+// Dynamic imports for code splitting
+const LazyComponent = lazy(() => import('./LazyComponent'));
+
+function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LazyComponent />
+    </Suspense>
+  );
+}
+\`\`\`
+
+### 3. Resource Hints
+
+\`\`\`html
+<!-- Preload critical resources -->
+<link rel="preload" href="/critical.css" as="style">
+<link rel="preload" href="/hero-image.jpg" as="image">
+
+<!-- Prefetch future resources -->
+<link rel="prefetch" href="/next-page.js">
+\`\`\`
+
+## Advanced Techniques
+
+### 1. Service Workers
+
+\`\`\`javascript
+// Cache-first strategy
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => response || fetch(event.request))
+  );
+});
+\`\`\`
+
+### 2. Critical CSS
+
+\`\`\`html
+<style>
+  /* Inline critical CSS */
+  .hero { display: flex; align-items: center; }
+</style>
+<link rel="preload" href="/non-critical.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+\`\`\`
+
+### 3. Resource Bundling
+
+\`\`\`javascript
+// Webpack optimization
+module.exports = {
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
+};
+\`\`\`
+
+## Monitoring and Measurement
+
+### 1. Performance APIs
+
+\`\`\`javascript
+// Navigation Timing API
+const perfData = performance.getEntriesByType('navigation')[0];
+console.log('Page Load Time:', perfData.loadEventEnd - perfData.navigationStart);
+
+// Resource Timing API
+const resources = performance.getEntriesByType('resource');
+resources.forEach(resource => {
+  console.log(resource.name, resource.duration);
+});
+\`\`\`
+
+### 2. Real User Monitoring (RUM)
+
+\`\`\`javascript
+// Send performance data to analytics
+function sendPerformanceData() {
+  const perfData = {
+    lcp: getLCP(),
+    fid: getFID(),
+    cls: getCLS(),
+    ttfb: getTTFB()
+  };
+  
+  navigator.sendBeacon('/analytics', JSON.stringify(perfData));
+}
+\`\`\`
+
+## Performance Budget
+
+Set performance budgets to maintain standards:
+
+\`\`\`json
+{
+  "budget": [
+    {
+      "type": "bundle",
+      "maximumWarning": "500kb",
+      "maximumError": "1mb"
+    },
+    {
+      "type": "initial",
+      "maximumWarning": "350kb",
+      "maximumError": "500kb"
+    }
+  ]
+}
+\`\`\`
+
+## Tools and Testing
+
+### 1. Lighthouse
+Use Lighthouse for comprehensive audits:
+
+\`\`\`bash
+# CLI usage
+lighthouse https://example.com --output html --output-path ./report.html
+\`\`\`
+
+### 2. WebPageTest
+Test from multiple locations and devices.
+
+### 3. Chrome DevTools
+Use Performance tab for detailed analysis.
+
+## Best Practices Checklist
+
+- [ ] Optimize images (format, size, lazy loading)
+- [ ] Minimize and compress CSS/JS
+- [ ] Use CDN for static assets
+- [ ] Implement caching strategies
+- [ ] Optimize fonts (preload, font-display)
+- [ ] Minimize third-party scripts
+- [ ] Use HTTP/2 or HTTP/3
+- [ ] Implement service workers
+- [ ] Monitor Core Web Vitals
+- [ ] Set performance budgets
+
+## Conclusion
+
+Web Performance Optimization is an ongoing process that requires continuous monitoring and improvement. By implementing these strategies and maintaining performance budgets, you can create fast, user-friendly websites that rank well and convert better.`,
+      },
+      {
+        slug: "mypost",
+        title: "Mypost",
+        date: "2025-5-20",
+        author: "Alex Mondinechen",
+        excerpt: "This is a new post created manually to demonstrate local image hosting.",
+        tags: ["New Post", "Demo", "Local Images"],
+        image: "/images/mypost-image.png",
+        content: `# My First Manually Created Post
+
+This is the content for "Mypost". It demonstrates how you can add new content by simply creating a new directory with an \`index.md\` file and referencing a local image.
+
+## Local Image Example
+
+Here's an example of an image loaded from the \`public/images\` directory:
+
+![Local Image](/images/mypost-image.png)
+
+This approach gives you full control over your assets and ensures they are served directly by your application.`,
       },
     ]
 

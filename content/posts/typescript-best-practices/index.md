@@ -4,7 +4,7 @@ date: "2023-12-28"
 author: "Sarah Wilson"
 excerpt: "Learn essential TypeScript patterns and practices for building maintainable, scalable applications with better type safety."
 tags: ["TypeScript", "JavaScript", "Best Practices", "Development"]
-image: "/images/typescript-image.png"
+image: "/images/typescript-best-practices.png"
 ---
 
 # TypeScript Best Practices for Large-Scale Applications

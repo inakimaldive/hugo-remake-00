@@ -4,7 +4,7 @@ date: "2023-12-15"
 author: "David Kim"
 excerpt: "Learn essential techniques for optimizing web performance, from Core Web Vitals to advanced optimization strategies."
 tags: ["Performance", "Web Development", "Optimization", "Core Web Vitals"]
-image: "/images/performance-image.png"
+image: "/images/web-performance-optimization.png"
 ---
 
 # Web Performance Optimization: A Complete Guide
@@ -209,4 +209,130 @@ Use Performance tab for detailed analysis.
 
 ## Conclusion
 
-Web Performance Optimization is an ongoing process that requires continuous monitoring and improvement. By implementing these strategies and maintaining performance budgets, you can create fast, user-friendly websites that rank well and convert better.
+Web Performance Optimization is an ongoing process that requires continuous monitoring and improvement. By implementing these strategies and maintaining performance budgets, you can create fast, user-friendly websites that rank well and convert better.`,
+      },
+    ]
+
+    samplePosts.forEach(({ slug, title, date, author, excerpt, tags, image, content }) => {
+      const postDir = path.join(postsDirectory, slug)
+      if (!fs.existsSync(postDir)) {
+        fs.mkdirSync(postDir, { recursive: true })
+
+        const frontmatter = `---
+title: "${title}"
+date: "${date}"
+author: "${author}"
+excerpt: "${excerpt}"
+tags: [${tags.map((tag) => `"${tag}"`).join(", ")}]
+image: "${image}"
+---
+
+${content}`
+
+        fs.writeFileSync(path.join(postDir, "index.md"), frontmatter)
+      }
+    })
+  }
+}
+
+function calculateReadingTime(content: string): number {
+  const wordsPerMinute = 200
+  const words = content.split(/\s+/).length
+  return Math.ceil(words / wordsPerMinute)
+}
+
+export async function getAllPosts(): Promise<BlogPost[]> {
+  ensureSamplePosts()
+
+  const postDirs = fs
+    .readdirSync(postsDirectory, { withFileTypes: true })
+    .filter((dirent) => dirent.isDirectory())
+    .map((dirent) => dirent.name)
+
+  const allPostsData = await Promise.all(
+    postDirs.map(async (slug) => {
+      const postDir = path.join(postsDirectory, slug)
+      const indexPath = path.join(postDir, "index.md")
+
+      if (!fs.existsSync(indexPath)) {
+        return null
+      }
+
+      const fileContents = fs.readFileSync(indexPath, "utf8")
+      const { data, content } = matter(fileContents)
+
+      const processedContent = await remark().use(html).process(content)
+      const contentHtml = processedContent.toString()
+
+      return {
+        slug,
+        title: data.title || "Untitled",
+        date: data.date || new Date().toISOString(),
+        author: data.author || "Anonymous",
+        excerpt: data.excerpt || content.substring(0, 160) + "...",
+        content: contentHtml,
+        tags: data.tags || [],
+        image: data.image,
+        readingTime: calculateReadingTime(content),
+      } as BlogPost
+    }),
+  )
+
+  return allPostsData.filter((post): post is BlogPost => post !== null).sort((a, b) => (a.date < b.date ? 1 : -1))
+}
+
+export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+  try {
+    ensureSamplePosts()
+
+    const postDir = path.join(postsDirectory, slug)
+    const indexPath = path.join(postDir, "index.md")
+
+    if (!fs.existsSync(indexPath)) {
+      return null
+    }
+
+    const fileContents = fs.readFileSync(indexPath, "utf8")
+    const { data, content } = matter(fileContents)
+
+    const processedContent = await remark().use(html).process(content)
+    const contentHtml = processedContent.toString()
+
+    return {
+      slug,
+      title: data.title || "Untitled",
+      date: data.date || new Date().toISOString(),
+      author: data.author || "Anonymous",
+      excerpt: data.excerpt || content.substring(0, 160) + "...",
+      content: contentHtml,
+      tags: data.tags || [],
+      image: data.image,
+      readingTime: calculateReadingTime(content),
+    }
+  } catch (error) {
+    return null
+  }
+}
+
+export async function getAllTags(): Promise<string[]> {
+  const posts = await getAllPosts()
+  const tags = new Set<string>()
+
+  posts.forEach((post) => {
+    post.tags.forEach((tag) => tags.add(tag))
+  })
+
+  return Array.from(tags).sort()
+}
+
+export async function getArchiveYears(): Promise<number[]> {
+  const posts = await getAllPosts()
+  const years = new Set<number>()
+
+  posts.forEach((post) => {
+    const year = new Date(post.date).getFullYear()
+    years.add(year)
+  })
+
+  return Array.from(years).sort((a, b) => b - a)
+}

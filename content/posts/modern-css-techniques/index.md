@@ -4,7 +4,7 @@ date: "2023-12-20"
 author: "Alex Chen"
 excerpt: "Explore cutting-edge CSS techniques including CSS Grid, Flexbox, custom properties, and modern layout methods for responsive design."
 tags: ["CSS", "Web Design", "Frontend", "Responsive Design"]
-image: "/images/css-image.png"
+image: "/images/modern-css-techniques.png"
 ---
 
 # Modern CSS Techniques: Grid, Flexbox, and Beyond

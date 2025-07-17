@@ -10,7 +10,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['images.unsplash.com', 'placeholder.svg'], // Re-added images.unsplash.com
+    domains: ['images.unsplash.com', 'placeholder.svg', 'via.placeholder.com'], // Added via.placeholder.com
     unoptimized: true,
   },
 }

@@ -4,7 +4,7 @@ date: "2024-01-05"
 author: "Mike Johnson"
 excerpt: "Explore React Server Components and how they're changing the way we build React applications with better performance and user experience."
 tags: ["React", "Server Components", "Performance", "Web Development"]
-image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=400&fit=crop"
+image: "/images/react-server-components-explained.png"
 ---
 
 # React Server Components: The Future of React Development
