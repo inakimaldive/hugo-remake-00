@@ -1,5 +1,4 @@
-import ClientHomePage from "./ClientHomePage"
-import { getAllPosts } from "@/lib/blog"
+import { ClientHomePage } from "./ClientHomePage"
 
 export const metadata = {
   title: "Stack Blog",
@@ -7,7 +6,5 @@ export const metadata = {
 }
 
 export default async function HomePage() {
-  const posts = await getAllPosts() // runs only on the server
-
-  return <ClientHomePage posts={posts} />
+  return <ClientHomePage />
 }

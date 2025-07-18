@@ -1,15 +1,15 @@
 "use client"
+
 import { BlogLayout } from "@/components/layout/blog-layout"
 import BlogHome from "@/components/blog/blog-home"
+import { getAllPosts } from "@/lib/blog"
 
-interface Props {
-  posts: any
-}
+export async function ClientHomePage() {
+  const posts = await getAllPosts() // executes on the server
 
-export default function ClientHomePage({ posts }: Props) {
   return (
     <BlogLayout>
-      <BlogHome posts={posts} />
+      <BlogHome posts={posts} /> {/* BlogHome is `"use client"` */}
     </BlogLayout>
   )
 }
