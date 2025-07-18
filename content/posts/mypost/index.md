@@ -2,19 +2,24 @@
 title: "Mypost"
 date: "2025-5-20"
 author: "Alex Mondinechen"
-excerpt: "This is a new post created manually to demonstrate local image hosting."
-tags: ["New Post", "Demo", "Local Images"]
-image: "/images/mypost-image.png"
+excerpt: "Explore cutting-edge CSS techniques including CSS Grid, Flexbox, custom properties, and modern layout methods for responsive design."
+tags: ["CSS", "Web Design", "Frontend", "Responsive Design"]
+image: "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=1200&h=600&q=80"
 ---
 
-# My First Manually Created Post
+# Modern CSS Techniques: Grid, Flexbox, and Beyond
 
-This is the content for "Mypost". It demonstrates how you can add new content by simply creating a new directory with an `index.md` file and referencing a local image.
+CSS has evolved tremendously in recent years. Modern CSS provides powerful tools for creating responsive, maintainable layouts without relying on frameworks.
 
-## Local Image Example
+## CSS Grid: The Layout Revolution
 
-Here's an example of an image loaded from the `public/images` directory:
+CSS Grid is a two-dimensional layout system that revolutionizes how we approach web layouts.
 
-![Local Image](/images/mypost-image.png)
+### Basic Grid Setup
 
-This approach gives you full control over your assets and ensures they are served directly by your application.
+\`\`\`css
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}

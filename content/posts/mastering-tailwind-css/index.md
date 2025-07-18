@@ -4,7 +4,7 @@ date: "2024-01-10"
 author: "Jane Smith"
 excerpt: "Discover advanced Tailwind CSS techniques to create beautiful, responsive designs with utility-first CSS framework."
 tags: ["Tailwind CSS", "CSS", "Design", "Frontend"]
-image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop"
+image: "/images/tailwind-image.png"
 ---
 
 # Mastering Tailwind CSS

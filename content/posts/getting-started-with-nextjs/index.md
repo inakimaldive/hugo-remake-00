@@ -4,7 +4,7 @@ date: "2024-01-15"
 author: "John Doe"
 excerpt: "Learn how to build modern web applications with Next.js 15, featuring the latest App Router, Server Components, and more."
 tags: ["Next.js", "React", "Web Development", "JavaScript"]
-image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=400&fit=crop"
+image: "https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=1796&auto"
 ---
 
 # Getting Started with Next.js 15
@@ -44,3 +44,5 @@ Built-in streaming support for better user experience with loading states.
 ## Conclusion
 
 Next.js 15 represents a significant step forward in React development. With its powerful features and excellent developer experience, it's the perfect choice for your next project.
+
+</merged_code>

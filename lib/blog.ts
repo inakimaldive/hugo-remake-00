@@ -1,8 +1,7 @@
 import fs from "fs"
 import path from "path"
 import matter from "gray-matter"
-import { remark } from "remark"
-import html from "remark-html"
+import { marked } from "marked"
 
 export interface BlogPost {
   slug: string
@@ -614,8 +613,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
       const fileContents = fs.readFileSync(indexPath, "utf8")
       const { data, content } = matter(fileContents)
 
-      const processedContent = await remark().use(html).process(content)
-      const contentHtml = processedContent.toString()
+      const contentHtml = marked.parse(content)
 
       return {
         slug,
@@ -648,8 +646,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     const fileContents = fs.readFileSync(indexPath, "utf8")
     const { data, content } = matter(fileContents)
 
-    const processedContent = await remark().use(html).process(content)
-    const contentHtml = processedContent.toString()
+    const contentHtml = marked.parse(content)
 
     return {
       slug,
